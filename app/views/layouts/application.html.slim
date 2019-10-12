@@ -1,0 +1,9 @@
+doctype html
+html.h-100 lang="en"
+  head
+    = render 'layouts/shared/head'
+  body.d-flex.flex-column.h-100
+    = render 'layouts/shared/navbar'
+    = yield
+    = javascript_include_tag 'application'
+    = javascript_pack_tag 'application'
