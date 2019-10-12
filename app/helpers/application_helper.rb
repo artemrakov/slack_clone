@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include AuthManagment
+
   def active?(path, options = {})
     if options.key? :active_if
       'active' if options[:active_if]
