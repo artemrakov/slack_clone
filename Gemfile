@@ -33,4 +33,5 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'factory_bot_rails'
 end
