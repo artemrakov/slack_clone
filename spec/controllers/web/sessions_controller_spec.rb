@@ -12,7 +12,7 @@ RSpec.describe Web::SessionsController, type: :controller do
     it 'logs in the user' do
       user = create(:user)
 
-      post :create, params: { user: { email: user.email, password: user.password } }
+      post :create, params: { sign_in: { email: user.email, password: user.password } }
 
       expect(signed_in?).to eq true
       expect(current_user.email).to eq user.email
