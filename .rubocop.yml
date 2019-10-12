@@ -12,7 +12,7 @@ AllCops:
     - 'script/**/*'
     - 'support/**/*'
     - 'tmp/**/*'
-    - 'test/**/*'
+    - 'spec/**/*'
 
 ConditionalAssignment:
   Enabled: false
