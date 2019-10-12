@@ -15,6 +15,7 @@ gem 'simple_form', '>= 5.0.0'
 gem 'uglifier'
 gem 'webpacker'
 gem 'slim-rails'
+gem 'bcrypt'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

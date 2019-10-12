@@ -1,0 +1,15 @@
+DEFAULTS: &DEFAULTS
+  first_name: $LABEL
+  last_name: Last
+
+one:
+  <<: *DEFAULTS
+  email: $LABEL@email.com
+  password_digest: <%= BCrypt::Password.create("my password") %>
+
+
+two:
+  <<: *DEFAULTS
+  email: $LABEL@email.com
+  password_digest: <%= BCrypt::Password.create("my password") %>
+
