@@ -1,4 +1,6 @@
 class Web::SessionsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def new
     @sign_in = SignIn.new
   end

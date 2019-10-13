@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_171502) do
+ActiveRecord::Schema.define(version: 2019_10_13_194829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_invitations_on_team_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.string "slug"
+    t.index ["owner_id"], name: "index_teams_on_owner_id"
+    t.index ["slug"], name: "index_teams_on_slug", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
@@ -24,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_10_12_171502) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "invitations", "teams"
+  add_foreign_key "invitations", "users"
 end

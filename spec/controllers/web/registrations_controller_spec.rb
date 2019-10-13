@@ -4,6 +4,7 @@ RSpec.describe Web::RegistrationsController, type: :controller do
   describe '#new' do
     it 'successful' do
       get :new
+
       expect(response).to have_http_status 200
     end
   end
@@ -15,7 +16,7 @@ RSpec.describe Web::RegistrationsController, type: :controller do
       post :create, params: { user: attrs }
 
       expect(response).to have_http_status 302
-      expect(User.find_by(email: attrs[:email])).to exist
+      expect(User.find_by(email: attrs[:email])).to be_present
       expect(signed_in?).to eq true
     end
   end

@@ -37,3 +37,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'database_cleaner'
 end
+
+gem "friendly_id", "~> 5.3"

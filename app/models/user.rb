@@ -5,7 +5,12 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :password, presence: true, on: :create
 
-  alias exist? present?
+  has_many :invitations, dependent: :destroy
+  has_many :teams, through: :invitations
+  has_many :owned_teams,
+           foreign_key: :owner_id,
+           class_name: 'Team',
+           dependent: :destroy
 
   def guest?
     false

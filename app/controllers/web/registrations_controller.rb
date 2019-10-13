@@ -1,4 +1,6 @@
 class Web::RegistrationsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def new
     @user = User.new
   end
