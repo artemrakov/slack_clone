@@ -18,28 +18,11 @@ RSpec.describe Web::TeamsController, type: :controller do
   describe '#show' do
     it 'successful' do
       team = create(:team)
+      invite = create(:invitation, user: user, team: team)
 
       get :show, params: { id: team.id }
 
       expect(response).to have_http_status 200
-    end
-  end
-
-  describe '#new' do
-    it 'successful' do
-      get :new
-
-      expect(response).to have_http_status 200
-    end
-  end
-
-  describe '#create' do
-    it 'creates a team' do
-      attrs = attributes_for(:team, owner_id: user.id)
-
-      post :create, params: { team: attrs }
-
-      expect(Team.find_by(name: attrs[:name])).to be_present
     end
   end
 end

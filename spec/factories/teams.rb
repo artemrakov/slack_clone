@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name { 'Happy team' }
+    name { 'my-team' }
     association :owner, factory: :user
   end
 end
