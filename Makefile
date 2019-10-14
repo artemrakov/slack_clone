@@ -8,7 +8,7 @@ db-reset:
 	bin/rails db:drop
 	bin/rails db:create
 	bin/rails db:migrate
-	bin/rails db:fixtures:load
+	bin/rails db:seed
 
 start:
 	bundle exec heroku local
