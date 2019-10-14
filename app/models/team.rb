@@ -6,6 +6,7 @@ class Team < ApplicationRecord
 
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations
+  has_many :channels, dependent: :destroy
 
   belongs_to :owner, class_name: "User"
 
