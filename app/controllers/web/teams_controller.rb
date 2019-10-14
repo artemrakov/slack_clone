@@ -4,6 +4,7 @@ class Web::TeamsController < ApplicationController
   end
 
   def show
-    @team = current_user.teams.friendly.find(params[:id])
+    @team = current_user.find_team(params[:id])
+    @channels = @team.channels
   end
 end

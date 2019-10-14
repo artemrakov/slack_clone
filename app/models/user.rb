@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def guest?
     false
   end
+
+  def find_team(id)
+    teams.friendly.find(id)
+  end
 end

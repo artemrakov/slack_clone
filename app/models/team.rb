@@ -13,4 +13,8 @@ class Team < ApplicationRecord
   def to_s
     name
   end
+
+  def find_channel(id)
+    channels.friendly.find(id)
+  end
 end
