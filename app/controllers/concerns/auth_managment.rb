@@ -21,4 +21,10 @@ module AuthManagment
 
     redirect_to root_path
   end
+
+  def redirect_logged_in!
+    return unless signed_in?
+
+    redirect_to root_path
+  end
 end

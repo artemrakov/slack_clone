@@ -1,5 +1,6 @@
 class Web::SessionsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :redirect_logged_in!, except: :destroy
 
   def new
     @sign_in = SignIn.new
