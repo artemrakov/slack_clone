@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true, uniqueness: true, format: { with: /\A\S*\z/ }
+  validates :description, presence: true
 
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations

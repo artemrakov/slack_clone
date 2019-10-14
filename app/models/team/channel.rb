@@ -6,7 +6,7 @@ class Team::Channel < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :team }, format: { with: /\A\S*\z/ }
 
-  belongs_to :team
+  belongs_to :team, counter_cache: true
 
   def to_s
     name

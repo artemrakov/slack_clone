@@ -1,2 +1,4 @@
-- @teams.each do |team|
-  li =link_to team, team_path(team)
+.row
+  .col-md-6.offset-md-3
+    h2= t('.teams')
+    = render 'web/shared/teams', teams: @teams
