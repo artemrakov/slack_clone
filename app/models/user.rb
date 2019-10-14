@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :owned_teams,
            foreign_key: :owner_id,
            class_name: 'Team',
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :user
 
   def guest?
     false

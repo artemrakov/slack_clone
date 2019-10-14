@@ -1,4 +1,6 @@
 class Team::Channel < ApplicationRecord
+  DEFAULT_NAME = 'general'
+
   extend FriendlyId
   friendly_id :name, use: :scoped, scope: :team
 
