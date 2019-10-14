@@ -12,7 +12,7 @@ class Web::Account::TeamsController < ApplicationController
 
     if @team.save
       @team.invitations.create!(user: current_user)
-      @team.channels.create(name: Team::Channel::DEFAULT_NAME)
+      @team.channels.create(name: Team::Channel::DEFAULT)
 
       redirect_to account_teams_path
     else

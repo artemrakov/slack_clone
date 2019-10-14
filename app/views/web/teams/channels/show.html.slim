@@ -1,1 +1,8 @@
-= @channel
+.row
+  .col-md-2
+    ul.nav.flex-column.nav-pills
+      - @channels.each do |channel|
+        = nav_menu_item channel, team_channel_path(@team, channel)
+    hr.my-3
+    ul.nav.flex-column.nav-pills
+      = nav_menu_item t('.new_channel'), new_team_channel_path(@team)

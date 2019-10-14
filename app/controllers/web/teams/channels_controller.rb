@@ -2,6 +2,7 @@ class Web::Teams::ChannelsController < ApplicationController
   before_action :find_team
 
   def show
+    @channels = @team.channels
     @channel = @team.find_channel(params[:id])
   end
 

@@ -5,6 +5,7 @@ class Web::TeamsController < ApplicationController
 
   def show
     @team = current_user.find_team(params[:id])
-    @channels = @team.channels
+
+    redirect_to team_channel_path(@team, Team::Channel::DEFAULT)
   end
 end
