@@ -1,10 +1,10 @@
 class Web::TeamsController < ApplicationController
   def index
-    @teams = current_user.teams
+    @teams = Team.all
   end
 
   def show
-    @team = current_user.find_team(params[:id])
+    @team = Team.friendly.find(params[:id])
 
     redirect_to team_channel_path(@team, Team::Channel::DEFAULT)
   end

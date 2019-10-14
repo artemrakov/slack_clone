@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Web::TeamsController, type: :controller do
-  let(:user) { create(:user) }
-
-  before(:each) do
-    sign_in(user)
-  end
-
   describe '#index' do
     it 'successful' do
       get :index
@@ -19,9 +13,11 @@ RSpec.describe Web::TeamsController, type: :controller do
     it 'successful' do
       team = create(:team)
       channel = create(:team_channel, team: team, name: Team::Channel::DEFAULT)
+      user = create(:user)
       invite = create(:invitation, user: user, team: team)
 
 
+      sign_in(user)
       get :show, params: { id: team.id }
 
       expect(response).to have_http_status 302

@@ -1,4 +1,4 @@
-class Web::Account::TeamsController < ApplicationController
+class Web::Account::TeamsController < Web::Account::ApplicationController
   def index
     @teams = current_user.owned_teams
   end

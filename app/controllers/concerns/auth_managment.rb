@@ -19,7 +19,7 @@ module AuthManagment
   def authenticate_user!
     return if signed_in?
 
-    redirect_to root_path
+    redirect_to new_sessions_path
   end
 
   def redirect_logged_in!

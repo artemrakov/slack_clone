@@ -1,5 +1,4 @@
 class Web::RegistrationsController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :redirect_logged_in!
 
   def new
