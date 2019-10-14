@@ -1,5 +1,4 @@
-.container
-  = simple_form_for @sign_in, url: sessions_path do |f|
-    = f.input :email
-    = f.input :password
-    = f.submit class: 'btn btn-primary'
+= simple_form_for @sign_in, url: sessions_path do |f|
+  = f.input :email
+  = f.input :password
+  = f.submit class: 'btn btn-primary'

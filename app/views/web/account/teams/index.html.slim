@@ -1,3 +1,5 @@
-.container
-  - @teams.each do |team|
-    li = team
+- @teams.each do |team|
+  li =team
+
+
+= link_to t('.create_new_team'), new_team_path, class: 'btn btn-primary'

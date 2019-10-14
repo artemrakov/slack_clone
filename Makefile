@@ -1,8 +1,5 @@
 test:
-	bin/rails test
-
-fixtures-load:
-	bin/rails db:fixtures:load
+	bin/rails rspec
 
 clean:
 	bin/rails db:drop
