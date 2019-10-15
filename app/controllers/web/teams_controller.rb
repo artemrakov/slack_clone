@@ -1,6 +1,6 @@
 class Web::TeamsController < ApplicationController
   def index
-    @teams = current_user.teams
+    @teams = Team.public_access
   end
 
   def show

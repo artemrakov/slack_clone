@@ -1,6 +1,6 @@
 class Web::Account::TeamsController < ApplicationController
   def index
-    @teams = current_user.owned_teams
+    @teams = current_user.all_teams
   end
 
   def new

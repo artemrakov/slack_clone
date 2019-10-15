@@ -16,6 +16,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'slim-rails'
 gem 'bcrypt'
+gem 'aasm'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

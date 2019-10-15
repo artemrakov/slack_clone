@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def find_team(id)
     teams.friendly.find(id)
   end
+
+  def all_teams
+    (teams + owned_teams).uniq
+  end
 end
