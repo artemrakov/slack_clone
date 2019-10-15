@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe Tean::Channel, type: :model do
+RSpec.describe Team::Channel, type: :model do
 end

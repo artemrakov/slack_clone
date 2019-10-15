@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 2019_10_15_180501) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.string "slug"
+    t.text "description", null: false
+    t.integer "channels_count", default: 0, null: false
+    t.integer "users_count", default: 0, null: false
     t.string "state"
     t.index ["owner_id"], name: "index_teams_on_owner_id"
     t.index ["slug"], name: "index_teams_on_slug", unique: true

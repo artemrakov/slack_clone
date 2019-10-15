@@ -1,4 +1,9 @@
-= simple_form_for @sign_in, url: sessions_path do |f|
-  = f.input :email
-  = f.input :password
-  = f.submit class: 'btn btn-primary'
+.row
+  .col-lg-5.col-md-8.mx-auto
+    h1 = t('.sign_in')
+    = simple_form_for @sign_in, url: sessions_path do |f|
+      = f.input :email
+      = f.input :password
+      = f.submit class: 'btn btn-primary form-group'
+    .form-group
+      = link_to t('sign_up'), new_registrations_path

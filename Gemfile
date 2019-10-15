@@ -17,6 +17,7 @@ gem 'webpacker'
 gem 'slim-rails'
 gem 'bcrypt'
 gem 'aasm'
+gem 'friendly_id', '~> 5.3'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -38,5 +39,3 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'database_cleaner'
 end
-
-gem "friendly_id", "~> 5.3"

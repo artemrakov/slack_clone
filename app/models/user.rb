@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :owned_teams,
            foreign_key: :owner_id,
            class_name: 'Team',
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :owner
 
   def guest?
     false
@@ -22,5 +23,9 @@ class User < ApplicationRecord
 
   def all_teams
     (teams + owned_teams).uniq
+  end
+
+  def member_of_team?(team)
+    teams.include?(team)
   end
 end

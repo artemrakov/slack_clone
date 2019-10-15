@@ -33,6 +33,7 @@ RSpec.describe Web::Account::TeamsController, type: :controller do
       expect(response).to have_http_status 302
       expect(team).to be_truthy
       expect(Invitation.exists?(user: user, team: team)).to be_truthy
+      expect(Team::Channel.exists?(team: team, name: Team::Channel::DEFAULT)).to be_truthy
     end
   end
 end

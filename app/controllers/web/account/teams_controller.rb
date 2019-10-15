@@ -1,4 +1,4 @@
-class Web::Account::TeamsController < ApplicationController
+class Web::Account::TeamsController < Web::Account::ApplicationController
   def index
     @teams = current_user.all_teams
   end
@@ -12,6 +12,7 @@ class Web::Account::TeamsController < ApplicationController
 
     if @team.save
       @team.invitations.create!(user: current_user)
+      @team.channels.create(name: Team::Channel::DEFAULT)
 
       redirect_to account_teams_path
     else
@@ -22,6 +23,6 @@ class Web::Account::TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :description)
   end
 end
