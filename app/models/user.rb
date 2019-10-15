@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def find_team(id)
     teams.friendly.find(id)
   end
+
+  def member_of_team?(team)
+    teams.include?(team)
+  end
 end
