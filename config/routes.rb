@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :channels, only: [] do
+      scope module: :channels do
+        resources :messages, only: [:create, :update, :destroy]
+      end
+    end
+
     namespace :account do
       resources :teams, only: [:index, :new, :create]
     end
