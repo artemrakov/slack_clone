@@ -3,7 +3,7 @@ class Guest
     true
   end
 
-  def member_of_team(team)
+  def member_of_team(_team)
     false
   end
 end

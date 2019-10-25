@@ -3,6 +3,6 @@ class Web::Channels::ApplicationController < ApplicationController
   helper_method :resource_channel
 
   def resource_channel
-    @resource_channel ||= Channel.friendly.find(params[:channel_id])
+    @resource_channel ||= Team::Channel.friendly.find(params[:channel_id])
   end
 end

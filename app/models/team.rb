@@ -22,21 +22,21 @@ class Team < ApplicationRecord
     channels.friendly.find(id)
   end
 
-  aasm column: :state do 
+  aasm column: :state do
     state :public_access, initial: true
     state :private_access
     state :archived
 
     event :to_public do
-      transitions from: [:private_access, :archived], to: :public_access
+      transitions from: %i[private_access archived], to: :public_access
     end
 
-    event :to_private do 
-      transitions from: [:public_access, :archived], to: :private_access
+    event :to_private do
+      transitions from: %i[public_access archived], to: :private_access
     end
 
     event :to_archived do
-      transitions from: [:public_access, :private_access], to: :archived
+      transitions from: %i[public_access private_access], to: :archived
     end
   end
 end
