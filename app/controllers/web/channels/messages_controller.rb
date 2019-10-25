@@ -12,6 +12,18 @@ class Web::Channels::MessagesController < Web::Channels::ApplicationController
     redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)
   end
 
+  def update
+    @message = Team::Channel::Message.find(params[:id])
+
+    if @message.update(message_params)
+
+    else
+
+    end
+
+    redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)
+  end
+
   def destroy
     @message = Team::Channel::Message.find(params[:id])
 
