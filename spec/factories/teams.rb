@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name { 'my-team' }
+    sequence(:name) { |n| "team#{n}" }
     description { 'description' }
     association :owner, factory: :user
   end

@@ -19,4 +19,14 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
       expect(message).to be_truthy
     end
   end
+
+  describe '#destroy' do 
+    it 'delete a message' do 
+      message = create(:message, channel: channel)
+
+      delete :destroy, params: { channel_id: channel.id, id: message.id }
+
+      expect(channel.messages).to_not include(message)
+    end
+  end
 end

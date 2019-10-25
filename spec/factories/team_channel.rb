@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team_channel, class: Team::Channel  do
-    name { 'ruby' }
+    sequence(:name) { |n| "channel#{n}" }
     association :team
   end
 end
