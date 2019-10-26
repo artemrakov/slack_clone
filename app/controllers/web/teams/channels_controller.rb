@@ -2,6 +2,8 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
   def show
     @channels = resource_team.channels
     @channel = resource_team.find_channel(params[:id])
+    @messages = @channel.messages
+    @message = Team::Channel::Message.new
   end
 
   def new

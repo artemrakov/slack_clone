@@ -39,6 +39,6 @@ class Web::Channels::MessagesController < Web::Channels::ApplicationController
   private
 
   def message_params
-    params.require(:channel_message).permit(:content)
+    params.require(:team_channel_message).permit(:content)
   end
 end

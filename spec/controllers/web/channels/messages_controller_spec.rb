@@ -12,7 +12,7 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
     it 'creates a message' do
       attrs = attributes_for(:message)
 
-      post :create, params: { channel_id: channel.id, channel_message: attrs }
+      post :create, params: { channel_id: channel.id, team_channel_message: attrs }
       message = channel.messages.find_by(attrs)
 
       expect(response).to have_http_status 302
@@ -25,7 +25,7 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
       message = create(:message)
       attrs = { content: 'new text' }
 
-      patch :update, params: { channel_id: channel.id, id: message.id, channel_message: attrs }
+      patch :update, params: { channel_id: channel.id, id: message.id, team_channel_message: attrs }
 
       expect(response).to have_http_status 302
       expect(message.reload.content).to eq attrs[:content] 

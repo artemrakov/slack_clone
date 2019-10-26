@@ -6,3 +6,10 @@
     hr.my-3
     ul.nav.flex-column.nav-pills
       = nav_menu_item t('.new_channel'), new_team_channel_path(@resource_team)
+  .col-md-8
+    ul.list-group.pb-5
+      - @messages.each do |message|
+          li.list-group-item = message
+    = simple_form_for @message, url: channel_messages_path(@channel) do |f|
+      = f.input :content, label: false
+      = f.submit class: 'btn btn-primary'
