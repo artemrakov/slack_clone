@@ -9,7 +9,9 @@
   .col-md-8
     ul.list-group.pb-5
       - @messages.each do |message|
-          li.list-group-item = message
+          li.list-group-item 
+            = message
+            = link_to t('.delete'), channel_message_path(@channel, message), method: :delete, class: 'float-right'
     = simple_form_for @message, url: channel_messages_path(@channel) do |f|
       = f.input :content, label: false
       = f.submit class: 'btn btn-primary'
