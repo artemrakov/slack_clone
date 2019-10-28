@@ -13,10 +13,6 @@ class User < ApplicationRecord
            dependent: :destroy,
            inverse_of: :owner
 
-  def hello
-    puts 'hello'
-  end
-
   def guest?
     false
   end
