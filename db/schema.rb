@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_020705) do
+ActiveRecord::Schema.define(version: 2019_11_18_234721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,18 @@ ActiveRecord::Schema.define(version: 2019_10_24_020705) do
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_invitations_on_team_id"
     t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.string "state"
+    t.string "kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id"], name: "index_notifications_on_resource_type_and_resource_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "team_channel_messages", force: :cascade do |t|
@@ -80,6 +92,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_020705) do
 
   add_foreign_key "invitations", "teams"
   add_foreign_key "invitations", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "team_channel_messages", "team_channels", column: "channel_id"
   add_foreign_key "team_channel_messages", "teams"
   add_foreign_key "team_channels", "teams"
