@@ -7,12 +7,20 @@ class Team < ApplicationRecord
   validates :name, presence: true, uniqueness: true, format: { with: /\A\S*\z/ }
   validates :description, presence: true
 
-  has_many :invitations, dependent: :destroy
-  has_many :users, through: :invitations
+  has_many :team_invitations, dependent: :destroy
+  has_many :users, through: :team_invitations
   has_many :channels, dependent: :destroy
   has_many :messages, dependent: :destroy
 
   belongs_to :owner, class_name: "User"
+
+  def self.creation_states
+    states - [:archived]
+  end
+
+  def self.states
+    aasm.states.map(&:name)
+  end
 
   def to_s
     name

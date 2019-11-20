@@ -9,6 +9,8 @@ class Team::Channel < ApplicationRecord
                    format: { with: /\A\S*\z/ }
 
   has_many :messages, dependent: :destroy
+  has_many :channel_invitations, dependent: :destroy
+  has_many :users, through: :channel_invitations
   belongs_to :team, counter_cache: true
 
   def to_s

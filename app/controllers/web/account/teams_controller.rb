@@ -11,8 +11,9 @@ class Web::Account::TeamsController < Web::Account::ApplicationController
     @team = current_user.owned_teams.build(team_params)
 
     if @team.save
-      @team.invitations.create!(user: current_user)
-      @team.channels.create(name: Team::Channel::DEFAULT)
+      @team.team_invitations.create!(user: current_user)
+      channel = @team.channels.create(name: Team::Channel::DEFAULT)
+      channel.channel_invitations.create!(user: current_user)
 
       redirect_to account_teams_path
     else

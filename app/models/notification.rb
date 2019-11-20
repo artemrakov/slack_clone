@@ -1,7 +1,7 @@
 class Notification < ApplicationRecord
   include AASM
 
-  validates :kind, inclusion: { in: %w[new_channel_message new_tagged_message new_personal_message ] }
+  validates :kind, inclusion: { in: %w[new_channel_message new_tagged_message new_personal_message] }
   validates :resource_id, presence: true
   validates :resource_type, presence: true
 

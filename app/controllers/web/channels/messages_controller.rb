@@ -2,9 +2,11 @@ class Web::Channels::MessagesController < Web::Channels::ApplicationController
   def create
     @message = resource_channel.messages.build(message_params)
     @message.team_id = resource_channel.team_id
+    @message.user = current_user
 
     if @message.save
       # flash success
+      # resource_channel
     else
       # flash fail
     end
