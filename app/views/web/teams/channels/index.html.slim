@@ -9,11 +9,7 @@
       = nav_menu_item t('.discover'), team_channels_path
   .col-md-8
     ul.list-group.pb-5
-      - @messages.each do |message|
+      - @channels_to_discover.each do |channel|
           li.list-group-item
-            p = message.user
-            = message
-            = link_to t('.delete'), channel_message_path(@channel, message), method: :delete, class: 'float-right'
-    = simple_form_for @message, url: channel_messages_path(@channel) do |f|
-      = f.input :content, label: false
-      = f.submit class: 'btn btn-primary'
+            = channel
+            = link_to t('.join_group'),  channel_join_path(channel), method: :post, class: 'float-right'

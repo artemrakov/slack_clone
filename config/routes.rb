@@ -6,13 +6,14 @@ Rails.application.routes.draw do
     resource :registrations, only: [:new, :create]
     resources :teams, only: [:index, :show] do
       scope module: :teams do
-        resources :channels, only: [:show, :new, :create]
+        resources :channels, only: [:index, :show, :new, :create]
       end
     end
 
     resources :channels, only: [] do
       scope module: :channels do
         resources :messages, only: [:create, :update, :destroy]
+        resource :join, only: [:create]
       end
     end
 

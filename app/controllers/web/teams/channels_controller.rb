@@ -1,4 +1,9 @@
 class Web::Teams::ChannelsController < Web::Teams::ApplicationController
+  def index
+    @channels = current_user.channels.where(team: resource_team)
+    @channels_to_discover = resource_team.channels.where.not(id: @channels)
+  end
+
   def show
     @channels = current_user.channels.where(team: resource_team)
     @channel = resource_team.find_channel(params[:id])

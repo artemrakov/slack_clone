@@ -6,7 +6,9 @@ class Web::Channels::MessagesController < Web::Channels::ApplicationController
 
     if @message.save
       # flash success
-      # resource_channel
+      resource_channel.users.each do |user|
+        user.notifications.create!(kind: :new_channel_message, resource: @message) if user != current_user
+      end
     else
       # flash fail
     end
