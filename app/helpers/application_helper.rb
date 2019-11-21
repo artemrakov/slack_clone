@@ -17,4 +17,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def class_for_notification(notification)
+    ::NotificationHelper.notification_class(notification)
+  end
+
+  def message_for_notification(notification)
+    ::NotificationHelper.message(notification)
+  end
 end

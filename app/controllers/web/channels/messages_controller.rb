@@ -21,8 +21,6 @@ class Web::Channels::MessagesController < Web::Channels::ApplicationController
 
     if @message.update(message_params)
 
-    else
-
     end
 
     redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :teams, only: [:index, :show] do
       scope module: :teams do
         resources :channels, only: [:index, :show, :new, :create]
+        resource :join, only: [:create]
       end
     end
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
     namespace :account do
       resources :teams, only: [:index, :new, :create]
+      resources :notifications
     end
   end
 end

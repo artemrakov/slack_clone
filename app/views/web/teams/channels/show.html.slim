@@ -1,12 +1,16 @@
 .row
   .col-md-2
     ul.nav.flex-column.nav-pills
+      = nav_menu_item Team::Channel::DEFAULT, team_channel_path(@resource_team, Team::Channel::DEFAULT)
       - @channels.each do |channel|
         = nav_menu_item channel, team_channel_path(@resource_team, channel)
     hr.my-3
     ul.nav.flex-column.nav-pills
-      = nav_menu_item t('.new_channel'), new_team_channel_path(@resource_team)
-      = nav_menu_item t('.discover'), team_channels_path
+      - if current_user.member_of_team?(@resource_team)
+        = nav_menu_item t('.new_channel'), new_team_channel_path(@resource_team)
+        = nav_menu_item t('.discover'), team_channels_path
+      - else
+        = nav_menu_item t('.join_team'), team_join_path(@resource_team), method: :post
   .col-md-8
     ul.list-group.pb-5
       - @messages.each do |message|
@@ -14,6 +18,7 @@
             p = message.user
             = message
             = link_to t('.delete'), channel_message_path(@channel, message), method: :delete, class: 'float-right'
-    = simple_form_for @message, url: channel_messages_path(@channel) do |f|
-      = f.input :content, label: false
-      = f.submit class: 'btn btn-primary'
+    - if current_user.member_of_team?(@resource_team)
+      = simple_form_for @message, url: channel_messages_path(@channel) do |f|
+        = f.input :content, label: false
+        = f.submit class: 'btn btn-primary'

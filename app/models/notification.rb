@@ -16,5 +16,4 @@ class Notification < ApplicationRecord
       transitions from: :unread, to: :read
     end
   end
-
 end

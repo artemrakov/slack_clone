@@ -1,0 +1,3 @@
+en:
+  notifications:
+    new_channel_message_html: New message by <a href="%{user_path}" class="text-secondary font-weight-bolder">%{user}</a> wrote new message in <a href="%{message_path}">%{channel}</a>
