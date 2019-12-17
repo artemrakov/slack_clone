@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Web::Channels::MessagesController, type: :controller do 
   let(:user) { create(:user) }
-  let(:channel) { create(:team_channel) }
+  let(:channel) { create(:team_channel, :with_users) }
 
   before (:each) do
     sign_in(user)
@@ -17,6 +17,7 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
 
       expect(response).to have_http_status 302
       expect(message).to be_truthy
+      expect(Notification.find_by(resource_id: message.id)).to be_truthy
     end
   end
 
