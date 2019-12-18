@@ -5,10 +5,9 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
   end
 
   def show
-    @channels = user_channels
     @channel = resource_team.find_channel(params[:id])
+    @channels = [current_user.channels.where.not(id: @channel.id), @channel.attributes.merge(active: true)].flatten
     @messages = @channel.messages.includes(:user)
-    @message = Team::Channel::Message.new
   end
 
   def new
