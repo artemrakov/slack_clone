@@ -16,5 +16,6 @@ module SlackClone
     end
 
     config.load_defaults 5.2
+    config.active_job.queue_adapter = :delayed_job
   end
 end
