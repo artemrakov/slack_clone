@@ -1,16 +1,15 @@
-class Web::Channels::MessagesController < Web::Channels::ApplicationController
+class Api::Channels::MessagesController < Api::Channels::ApplicationController
   def create
     @message = resource_channel.messages.build(message_params)
     @message.team_id = resource_channel.team_id
     @message.user = current_user
 
     if @message.save
-      # flash success
       resource_channel.users.each do |user|
         user.notifications.create!(kind: :new_channel_message, resource: @message) if user != current_user
       end
     else
-      # flash fail
+      
     end
 
     redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)

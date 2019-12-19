@@ -1,6 +1,7 @@
 import React from 'react';
 import ChatNav from '../components/ChatNav';
 import Messages from '../components/Messages';
+import NewMessage from './NewMessage';
 
 class Chat extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class Chat extends React.Component {
           </div>
           <div className="col-md-8">
             <Messages messages={this.props.messages} />
+            <NewMessage channel={this.props.channel} />
           </div>
         </div>
       </div>

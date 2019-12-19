@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
     resources :channels, only: [] do
       scope module: :channels do
-        resources :messages, only: [:create, :update, :destroy]
         resource :join, only: [:create]
       end
     end
@@ -21,6 +20,14 @@ Rails.application.routes.draw do
     namespace :account do
       resources :teams, only: [:index, :new, :create]
       resources :notifications
+    end
+  end
+
+  scope module: :api do
+    resources :channels, only: [] do
+      scope module: :channels do
+        resources :messages, only: [:create, :update, :destroy]
+      end
     end
   end
 end
