@@ -19,16 +19,14 @@ class Chat extends React.Component {
       { id: 'new_channel', name: 'New Channel', href: `/teams/${team.name.toLowerCase()}/channel/new` },
       { id: 'discover', name: 'Discover', href: `/teams/${team.name.toLowerCase()}/channels` }
     ];
+
+    App.cable.subscriptions.create({ channel: "Team::Channel::MessagesChannel", team_channel: team.id }, { received: this.addMessage } );
     this.setState({ messages, channels, channel, team, generalLinks });
   }
 
-  addMessage = async (attributes) => {
-    const response = await axios.post(`/channels/${this.state.channel.id}/messages`, {
-      team_channel_message: attributes
-    })
-
-
-    this.setState({ messages: [...this.state.messages, response.data] });
+  addMessage = (message) => {
+    console.log(message)
+    this.setState({ messages: [...this.state.messages, message] });
   }
 
   deleteMessage = (id) => async (event) => {
@@ -38,7 +36,6 @@ class Chat extends React.Component {
 
     this.setState({ messages: newMessages });
   }
-
 
   render() {
     return (
@@ -51,7 +48,7 @@ class Chat extends React.Component {
           </div>
           <div className="col-md-8">
             <Messages messages={this.state.messages} delete={this.deleteMessage} />
-            <NewMessage action={this.addMessage} channel={this.state.channel} />
+            <NewMessage channel={this.state.channel} />
           </div>
         </div>
       </div>

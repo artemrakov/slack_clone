@@ -33,8 +33,8 @@ RSpec.describe Api::Channels::MessagesController, type: :controller do
     end
   end
 
-  describe '#destroy' do 
-    it 'delete a message' do 
+  describe '#destroy' do
+    it 'delete a message' do
       message = create(:message, channel: channel)
 
       delete :destroy, params: { channel_id: channel.id, id: message.id }

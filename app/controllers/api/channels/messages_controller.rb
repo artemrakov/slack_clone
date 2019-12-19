@@ -3,6 +3,7 @@ class Api::Channels::MessagesController < Api::Channels::ApplicationController
     @message = MessageMutator.create(resource_channel, message_params, current_user)
     if @message.save
 
+      Team::Channel::MessagesChannel.broadcast_to resource_channel, @message.attributes.merge(user: @message.user)
       render json: @message.to_json(include: :user), status: :created
     else
       render json: @message, serializer: ErrorSerializer, status: :unprocessable_entity

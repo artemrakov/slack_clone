@@ -1,7 +1,8 @@
 import "bootstrap";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Chat from '../containers/Chat';
+import Chat from '../src/containers/Chat';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.getElementById('chat_react');
