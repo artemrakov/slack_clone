@@ -6,7 +6,7 @@ class NotificationHelper
       notification_class_map = {
         new_personal_message: 'fa-file-alt',
         new_channel_message: 'fa-comment',
-        new_tagged_message: 'fa-comment',
+        new_tagged_message: 'fa-comment'
       }
 
       notification_class_map[notification.kind.to_sym]
@@ -26,7 +26,7 @@ class NotificationHelper
         message_path: team_channel_path(resource.team, resource.channel, anchor: "message-#{resource.id}")
       }
     end
- 
+
     def new_channel_message_params(resource)
       {
         user: resource.user,
