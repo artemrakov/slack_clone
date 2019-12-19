@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Web::Channels::MessagesController, type: :controller do 
+RSpec.describe Api::Channels::MessagesController, type: :controller do 
   let(:user) { create(:user) }
   let(:channel) { create(:team_channel, :with_users) }
 
@@ -15,7 +15,7 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
       post :create, params: { channel_id: channel.id, team_channel_message: attrs }
       message = channel.messages.find_by(attrs)
 
-      expect(response).to have_http_status 302
+      expect(response).to have_http_status 201
       expect(message).to be_truthy
       expect(Notification.find_by(resource_id: message.id)).to be_truthy
     end
@@ -28,7 +28,7 @@ RSpec.describe Web::Channels::MessagesController, type: :controller do
 
       patch :update, params: { channel_id: channel.id, id: message.id, team_channel_message: attrs }
 
-      expect(response).to have_http_status 302
+      expect(response).to have_http_status 200
       expect(message.reload.content).to eq attrs[:content] 
     end
   end

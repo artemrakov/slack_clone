@@ -8,33 +8,32 @@ class Api::Channels::MessagesController < Api::Channels::ApplicationController
       resource_channel.users.each do |user|
         user.notifications.create!(kind: :new_channel_message, resource: @message) if user != current_user
       end
-    else
-      
-    end
 
-    redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)
+      render json: @message, status: :created
+    else
+      render json: @message, serializer: ErrorSerializer, status: :unprocessable_entity
+    end
   end
 
   def update
     @message = Team::Channel::Message.find(params[:id])
 
     if @message.update(message_params)
-
+      render json: @message, status: :ok
+    else
+      render json: @message, serializer: ErrorSerializer, status: :unprocessable_entity
     end
 
-    redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)
   end
 
   def destroy
     @message = Team::Channel::Message.find(params[:id])
 
     if @message.destroy
-      # flash success
+      render json: @message, status: :ok
     else
-      # flash fail
+      render json: @message, serializer: ErrorSerializer, status: :unprocessable_entity
     end
-
-    redirect_to team_channel_path(team_id: resource_channel.team_id, id: resource_channel)
   end
 
   private
