@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatNav from '../components/ChatNav';
+import Messages from '../components/Messages';
 
 class Chat extends React.Component {
   render() {
@@ -10,11 +11,16 @@ class Chat extends React.Component {
     ];
 
     return (
-      <div className="row">
-        <div className="col-md-2">
-          <ChatNav links={this.props.channels} />
-          <hr className="my-3" />
-          <ChatNav links={generalLinks} />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-2">
+            <ChatNav links={this.props.channels} />
+            <hr className="my-3" />
+            <ChatNav links={generalLinks} />
+          </div>
+          <div className="col-md-8">
+            <Messages messages={this.props.messages} />
+          </div>
         </div>
       </div>
     )

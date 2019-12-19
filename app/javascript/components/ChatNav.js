@@ -1,16 +1,27 @@
 import React from 'react';
+import cn from 'classnames';
 
 const chatNav = (props) => {
   return (
     <ul className="nav flex-column nav-pills">
-      {props.links.map(link => (
-        <li key={link.id} className="nav-item">
-          <a className={`nav-link ${link.active ? 'active' : ''}`} href={link.href ? link.href : '#'}>
-            {link.name}
-          </a>
-        </li>
-      ))}
+      {props.links.map(link => listItem(link))}
     </ul>
+  );
+}
+
+const listItem = (item) => {
+  const href = item.href ? item.href : '#';
+  const classes = cn({
+    'nav-link': true,
+    'active': item.active
+  });
+
+  return (
+    <li key={item.id} className="nav-item">
+      <a className={classes} href={href}>
+        {item.name}
+      </a>
+    </li>
   );
 }
 

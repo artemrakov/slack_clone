@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (element) {
     const props = {
       channels: JSON.parse(element.dataset.channels),
-      team: JSON.parse(element.dataset.team)
+      team: JSON.parse(element.dataset.team),
+      messages: JSON.parse(element.dataset.messages)
     };
 
     ReactDOM.render(
