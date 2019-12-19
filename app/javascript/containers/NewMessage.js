@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 class NewMessage extends React.Component {
   state = {
@@ -13,11 +12,8 @@ class NewMessage extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await axios.post(`/channels/${this.props.channel.id}/messages`, {
-      team_channel_message: { content: this.state.content }
-    })
-
-    console.log(response)
+    this.props.action({ content: this.state.content });
+    this.setState({ content: '' });
   }
 
   render() {

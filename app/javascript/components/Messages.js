@@ -7,7 +7,7 @@ const messages = (props) => {
         <li key={item.id} className="list-group-item">
           <p>{item.user.first_name}</p>
           {item.content}
-          <a className="float-right" href="#">
+          <a onClick={props.delete(item.id)} className="float-right" href="#">
             <span>Delete</span>
           </a>
         </li>

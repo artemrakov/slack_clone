@@ -9,7 +9,7 @@ class Api::Channels::MessagesController < Api::Channels::ApplicationController
         user.notifications.create!(kind: :new_channel_message, resource: @message) if user != current_user
       end
 
-      render json: @message, status: :created
+      render json: @message.to_json(include: :user), status: :created
     else
       render json: @message, serializer: ErrorSerializer, status: :unprocessable_entity
     end
