@@ -18,11 +18,7 @@ class Chat extends React.Component {
 
   componentDidMount() {
     const { messages, channels, channel, team, user } = this.props;
-    const generalLinks = [
-      { id: 'new_channel', name: 'New Channel', href: `/teams/${team.name.toLowerCase()}/channels/new` },
-      { id: 'discover', name: 'Discover', href: `/teams/${team.name.toLowerCase()}/channels` }
-    ];
-
+    const generalLinks = this.generalLinksGenerator(user, team);
     const subscription = App.cable.subscriptions.create({ channel: "Team::Channel::MessagesChannel", team_channel: channel.id }, { received: this.handlerActionCableRequest } );
     this.setState({ messages, channels, channel, team, generalLinks, subscription, user });
   }
@@ -64,6 +60,18 @@ class Chat extends React.Component {
     this.setState({ messages, channels, channel, team, subscription });
   }
 
+  generalLinksGenerator = (user, team) => {
+    if (user.guest) {
+      return [];
+    }
+
+    return [
+      { id: 'new_channel', name: 'New Channel', href: `/teams/${team.name.toLowerCase()}/channels/new` },
+      { id: 'discover', name: 'Discover', href: `/teams/${team.name.toLowerCase()}/channels` }
+    ];
+
+  }
+
   render() {
     return (
       <div className="container">
@@ -74,7 +82,7 @@ class Chat extends React.Component {
             <ChatNav channel={this.state.channel} links={this.state.generalLinks} />
           </div>
           <div className="col-md-8">
-            <Messages messages={this.state.messages} delete={this.deleteMessage} />
+            <Messages user={this.state.user} messages={this.state.messages} delete={this.deleteMessage} />
             <NewMessage allowed={!this.state.user.guest} team={this.state.team} channel={this.state.channel} />
           </div>
         </div>
