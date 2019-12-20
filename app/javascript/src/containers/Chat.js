@@ -12,18 +12,19 @@ class Chat extends React.Component {
     channel: {},
     team: {},
     generalLinks: [],
-    subscription: {}
+    subscription: {},
+    user: {}
   }
 
   componentDidMount() {
-    const { messages, channels, channel, team } = this.props;
+    const { messages, channels, channel, team, user } = this.props;
     const generalLinks = [
       { id: 'new_channel', name: 'New Channel', href: `/teams/${team.name.toLowerCase()}/channels/new` },
       { id: 'discover', name: 'Discover', href: `/teams/${team.name.toLowerCase()}/channels` }
     ];
 
     const subscription = App.cable.subscriptions.create({ channel: "Team::Channel::MessagesChannel", team_channel: channel.id }, { received: this.handlerActionCableRequest } );
-    this.setState({ messages, channels, channel, team, generalLinks, subscription });
+    this.setState({ messages, channels, channel, team, generalLinks, subscription, user });
   }
 
   handlerActionCableRequest = (request) => {
@@ -74,7 +75,7 @@ class Chat extends React.Component {
           </div>
           <div className="col-md-8">
             <Messages messages={this.state.messages} delete={this.deleteMessage} />
-            <NewMessage channel={this.state.channel} />
+            <NewMessage user={this.state.user.guest} channel={this.state.channel} />
           </div>
         </div>
       </div>

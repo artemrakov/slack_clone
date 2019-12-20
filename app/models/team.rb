@@ -30,6 +30,10 @@ class Team < ApplicationRecord
     channels.friendly.find(id)
   end
 
+  def guest?(user)
+    !users.include?(user)
+  end
+
   aasm column: :state do
     state :public_access, initial: true
     state :private_access

@@ -8,6 +8,7 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
     @channel = resource_team.find_channel(params[:id])
     @channels = avaliable_channels
     @messages = @channel.messages.as_json(include: :user)
+    @user = current_user.attributes.merge(guest: resource_team.guest?(current_user))
 
     respond_to do |format|
       format.html
@@ -37,7 +38,11 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
   end
 
   def avaliable_channels
-    Team::Channel.where(id: current_user.channels.where(team: resource_team).pluck(:id) << resource_team.find_channel(Team::Channel::DEFAULT).id)
+    if resource_team.guest?(current_user)
+      resource_team.channels.where(name: Team::Channel::DEFAULT)
+    else
+      current_user.channels.where(team: resource_team)
+    end
   end
 
   def channels_to_discover

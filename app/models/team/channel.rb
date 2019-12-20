@@ -5,8 +5,8 @@ class Team::Channel < ApplicationRecord
   friendly_id :name, use: :scoped, scope: :team
 
   validates :name, presence: true,
-                   uniqueness: { scope: :team },
-                   format: { with: /\A\S*\z/ }
+    uniqueness: { scope: :team },
+    format: { with: /\A\S*\z/ }
 
   has_many :messages, dependent: :destroy
   has_many :channel_invitations, dependent: :destroy
@@ -16,4 +16,5 @@ class Team::Channel < ApplicationRecord
   def to_s
     name
   end
+
 end

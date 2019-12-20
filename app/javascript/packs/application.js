@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
       channels: JSON.parse(element.dataset.channels),
       team: JSON.parse(element.dataset.team),
       messages: JSON.parse(element.dataset.messages),
-      channel: JSON.parse(element.dataset.channel)
+      channel: JSON.parse(element.dataset.channel),
+      user: JSON.parse(element.dataset.user)
     };
 
     ReactDOM.render(
