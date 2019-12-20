@@ -1,12 +1,12 @@
 class Web::Teams::ChannelsController < Web::Teams::ApplicationController
   def index
-    @channels = user_channels
+    @channels = avaliable_channels
     @channels_to_discover = channels_to_discover
   end
 
   def show
     @channel = resource_team.find_channel(params[:id])
-    @channels = resource_team.channels
+    @channels = avaliable_channels
     @messages = @channel.messages.as_json(include: :user)
 
     respond_to do |format|
@@ -36,8 +36,8 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
     params.require(:team_channel).permit(:name)
   end
 
-  def user_channels
-    current_user.channels.where(team: resource_team).where.not(name: Team::Channel::DEFAULT)
+  def avaliable_channels
+    Team::Channel.where(id: current_user.channels.where(team: resource_team).pluck(:id) << resource_team.find_channel(Team::Channel::DEFAULT).id)
   end
 
   def channels_to_discover

@@ -1,7 +1,6 @@
 .row
   .col-md-2
     ul.nav.flex-column.nav-pills
-      = nav_menu_item Team::Channel::DEFAULT, team_channel_path(@resource_team, Team::Channel::DEFAULT)
       - @channels.each do |channel|
         = nav_menu_item channel, team_channel_path(@resource_team, channel)
     hr.my-3
