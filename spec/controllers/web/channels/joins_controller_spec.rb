@@ -14,4 +14,3 @@ RSpec.describe Web::Channels::JoinsController do
     expect(channel.users).to include user
   end
 end
-

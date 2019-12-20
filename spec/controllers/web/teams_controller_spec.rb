@@ -12,7 +12,6 @@ RSpec.describe Web::TeamsController, type: :controller do
   describe '#show' do
     it 'successful' do
       team = create(:team)
-      channel = create(:team_channel, team: team, name: Team::Channel::DEFAULT)
 
       get :show, params: { id: team.id }
 
