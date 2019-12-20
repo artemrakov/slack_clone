@@ -12,18 +12,18 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        redis:
-          image: redis
-          ports: ['6379:6379']
-          options: --entrypoint redis-server
+      redis:
+        image: redis
+        ports: ['6379:6379']
+        options: --entrypoint redis-server
 
-          steps: 
+    steps: 
     - uses: actions/checkout@v1
     - name: Setup Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.5.3
-    - uses: borales/actions-yarn@v1.21.1
+        ruby-version: 2.6.x
+    - uses: borales/actions-yarn@v2.0.0
       with:
         cmd: install
     - name: Build and run tests
@@ -32,10 +32,10 @@ jobs:
         REDIS_URL: redis://locahost:6379/0
         RAILS_ENV: test
         RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rails db:prepare
-          bundle exec rspec
+      run: |
+        sudo apt-get -yqq install libpq-dev
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rails db:prepare
+        bundle exec rspec
 
