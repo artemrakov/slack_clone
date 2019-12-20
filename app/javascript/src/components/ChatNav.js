@@ -4,21 +4,22 @@ import cn from 'classnames';
 const chatNav = (props) => {
   return (
     <ul className="nav flex-column nav-pills">
-      {props.links.map(link => listItem(link))}
+      {props.links.map(link => listItem(link, props))}
     </ul>
   );
 }
 
-const listItem = (item) => {
+const listItem = (item, props) => {
+  const clickHandler = item.href ? null : props.click(item.id);
   const href = item.href ? item.href : '#';
   const classes = cn({
     'nav-link': true,
-    'active': item.active
+    'active': item.id == props.channel.id
   });
 
   return (
     <li key={item.id} className="nav-item">
-      <a className={classes} href={href}>
+      <a onClick={clickHandler} className={classes} href={href}>
         {item.name}
       </a>
     </li>

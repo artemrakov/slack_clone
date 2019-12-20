@@ -13,7 +13,7 @@ class NewMessage extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await axios.post(`/channels/${1}/messages`, {
+    const response = await axios.post(`/channels/${this.props.channel.id}/messages`, {
       team_channel_message: { content: this.state.content }
     })
 

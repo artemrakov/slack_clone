@@ -6,8 +6,13 @@ class Web::Teams::ChannelsController < Web::Teams::ApplicationController
 
   def show
     @channel = resource_team.find_channel(params[:id])
-    @channels = [current_user.channels.where.not(id: @channel.id), @channel.attributes.merge(active: true)].flatten
-    @messages = @channel.messages.to_json(include: :user)
+    @channels = resource_team.channels
+    @messages = @channel.messages.as_json(include: :user)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { channel: @channel, channels: @channels, messages: @messages, team: resource_team } }
+    end
   end
 
   def new
