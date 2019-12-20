@@ -42,4 +42,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0.beta2'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'apparition'
 end

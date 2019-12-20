@@ -3,6 +3,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara/apparition'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -20,4 +22,18 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryBot::Syntax::Methods
   config.include AuthManagment, type: :controller
+  config.include FeatureSpecHelper, type: :feature
+  config.include LoginSupport, type: :feature
 end
+
+Capybara.register_driver :apparition do |app|
+  options = {
+      debug: false,
+      headless: !ENV['OPEN_BROWSER'].present?,
+      screen_size: [1200, 900],
+      skip_image_loading: true
+  }
+  Capybara::Apparition::Driver.new(app, options)
+end
+
+Capybara.javascript_driver = :apparition
