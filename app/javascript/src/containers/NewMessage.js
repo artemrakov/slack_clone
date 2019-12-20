@@ -21,16 +21,29 @@ class NewMessage extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group string">
-          <input onChange={this.handleChange} value={this.state.content} className="form-control string" name="team_channel_message[content]" />
-        </div>
-        <button className="btn btn-primary">
-          Sent
-        </button>
-      </form>
-    );
+    if (this.props.allowed) {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group string">
+            <input onChange={this.handleChange} value={this.state.content} className="form-control string" name="team_channel_message[content]" />
+          </div>
+          <button className="btn btn-primary">
+            Sent
+          </button>
+        </form>
+      );
+    } else {
+      return (
+        <span className='text-center'>
+          In order to talk, you need to join team
+          <form action={`/teams/${this.props.team.id}/join`} method="post">
+            <button className="btn btn-primary">
+              Join team
+            </button>
+          </form>
+        </span>
+      )
+    }
   }
 };
 

@@ -75,7 +75,7 @@ class Chat extends React.Component {
           </div>
           <div className="col-md-8">
             <Messages messages={this.state.messages} delete={this.deleteMessage} />
-            <NewMessage user={this.state.user.guest} channel={this.state.channel} />
+            <NewMessage allowed={!this.state.user.guest} team={this.state.team} channel={this.state.channel} />
           </div>
         </div>
       </div>

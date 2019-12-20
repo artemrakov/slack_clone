@@ -1,4 +1,5 @@
 class Web::Teams::JoinsController < Web::Teams::ApplicationController
+  skip_before_action :verify_authenticity_token
   def create
     resource_team.team_invitations.create!(user: current_user)
     resource_team.channels.find_by(name: Team::Channel::DEFAULT).channel_invitations.create(user: current_user)
