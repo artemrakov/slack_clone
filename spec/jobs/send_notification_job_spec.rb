@@ -9,10 +9,9 @@ RSpec.describe SendNotificationJob, type: :job do
     kind = :new_channel_message
 
     SendNotificationJob.perform_now(
-      user_ids: user_ids,
-      resource_type: message.class.to_s,
-      resource_id: message.id,
-      current_user_id: current_user.id,
+      users: users,
+      resource: message,
+      current_user: current_user,
       kind: kind
     )
 
