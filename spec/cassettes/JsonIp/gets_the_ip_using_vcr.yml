@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://jsonip.org/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - jsonip.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 21 Dec 2019 05:09:13 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+    body:
+      encoding: UTF-8
+      string: '{"ip":"1.2.3.4","about":"/about"}'
+    http_version: 
+  recorded_at: Sat, 21 Dec 2019 05:09:13 GMT
+recorded_with: VCR 5.0.0

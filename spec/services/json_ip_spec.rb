@@ -7,4 +7,8 @@ RSpec.describe JsonIp do
       to_return(status: 200, body: '{"ip":"1.2.3.4"}', headers: {})
     expect(JsonIp.ip).to eq '1.2.3.4'
   end
+
+  it 'gets the ip using vcr', vcr: true do
+    expect(JsonIp.ip).to eq '1.2.3.4'
+  end
 end
