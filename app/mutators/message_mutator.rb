@@ -4,9 +4,13 @@ class MessageMutator
     message.team_id = channel.team_id
     message.user = current_user
     if message.save
-      channel.users.each do |user|
-        user.notifications.create!(kind: :new_channel_message, resource: message) if user != current_user
-      end
+      SendNotificationJob.perform_later(
+        user_ids: channel.users.ids,
+        resource_id: message.id,
+        resource_type: message.class.to_s,
+        current_user_id: current_user.id,
+        kind: :new_channel_message
+      )
     end
 
     message

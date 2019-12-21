@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Api::Channels::MessagesController, type: :controller do 
+RSpec.describe Api::Channels::MessagesController, type: :controller do
+  include ActiveJob::TestHelper
+
   let(:user) { create(:user) }
   let(:channel) { create(:team_channel, :with_users) }
 
@@ -14,6 +16,7 @@ RSpec.describe Api::Channels::MessagesController, type: :controller do
 
       post :create, params: { channel_id: channel.id, team_channel_message: attrs }
       message = channel.messages.find_by(attrs)
+      perform_enqueued_jobs
 
       expect(response).to have_http_status 201
       expect(message).to be_truthy
