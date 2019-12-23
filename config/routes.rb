@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :account do
       resources :teams, only: [:index, :new, :create]
       resources :notifications
+      resource :users, only: [:edit, :update, :destroy, :show]
     end
   end
 

@@ -16,6 +16,7 @@ class User < ApplicationRecord
            inverse_of: :owner
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy, class_name: 'Team::Channel::Message'
+  has_one_attached :avatar
 
   def guest?
     false

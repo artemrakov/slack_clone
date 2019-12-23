@@ -21,6 +21,7 @@ gem 'friendly_id', '~> 5.3'
 gem 'active_model_serializers'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'cloudinary'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

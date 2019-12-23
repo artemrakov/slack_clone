@@ -18,6 +18,14 @@ module ApplicationHelper
     end
   end
 
+  def user_avatar(user, size=40)
+    if user.avatar.attached?
+      user.avatar
+    else
+      "https://via.placeholder.com/#{size}"
+    end
+  end
+
   def class_for_notification(notification)
     ::NotificationHelper.notification_class(notification)
   end
