@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-lg-4.col-md-4.ml-auto.mr-auto
+       h1.text-center Account
+       = simple_form_for @user, url: account_users_path do |f|
+         = f.input :first_name
+         = f.input :last_name
+         = f.file_field :avatar, class: 'form-group', direct_upload: true
+         = f.submit 'Save', class: 'btn btn-primary'

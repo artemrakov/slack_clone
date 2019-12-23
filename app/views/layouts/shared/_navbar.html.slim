@@ -8,7 +8,11 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
         = nav_menu_item t('.notifications'), account_notifications_path
         = nav_menu_item t('.my_teams'), account_teams_path
         = nav_menu_item t('.teams'), teams_path
-        = nav_menu_item t('.sign_out'), sessions_path, method: :delete
+        li.nav-item.dropdown
+          = image_tag user_avatar(current_user), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false
+          .dropdown-menu.dropdown-menu-right aria-labelledby="navbarDropdown"
+            = link_to 'Settings', edit_account_users_path, class: 'dropdown-item'
+            = link_to 'Sign out', sessions_path, method: :delete, class: 'dropdown-item'
       - else
         = nav_menu_item t('.sign_in'), new_sessions_path
         = nav_menu_item t('.register'), new_registrations_path
