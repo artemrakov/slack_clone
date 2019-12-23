@@ -10,5 +10,9 @@ FactoryBot.define do
       end
     end
 
+    trait :default_channel do
+      name { Team::Channel::DEFAULT }
+    end
+
   end
 end

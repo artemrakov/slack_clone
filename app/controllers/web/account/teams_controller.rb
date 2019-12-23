@@ -8,11 +8,9 @@ class Web::Account::TeamsController < Web::Account::ApplicationController
   end
 
   def create
-    @team = current_user.owned_teams.build(team_params)
+    @team = TeamMutator.create(team_params, current_user)
 
-    if @team.save
-      @team.team_invitations.create!(user: current_user)
-
+    if @team.persisted?
       redirect_to account_teams_path
     else
       render :new

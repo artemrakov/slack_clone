@@ -34,11 +34,6 @@ class Team < ApplicationRecord
     !users.include?(user)
   end
 
-  after_create do
-    channel = channels.create(name: Team::Channel::DEFAULT)
-    channel.channel_invitations.create!(user: owner)
-  end
-
   aasm column: :state do
     state :public_access, initial: true
     state :private_access
