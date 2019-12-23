@@ -4,12 +4,10 @@ class MessageMutator
     message.team_id = channel.team_id
     message.user = current_user
     if message.save
-      SendNotificationJob.perform_later(
-        users: channel.users.to_a,
-        resource: message,
-        current_user: current_user,
-        kind: :new_channel_message
-      )
+      SendNotificationJob.perform_later(users: channel.users.to_a,
+                                        resource: message,
+                                        current_user: current_user,
+                                        kind: :new_channel_message)
     end
 
     message
