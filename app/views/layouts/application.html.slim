@@ -4,6 +4,7 @@ html.h-100 lang="en"
     = render 'layouts/shared/head'
   body.d-flex.flex-column.h-100
     = render 'layouts/shared/navbar'
+    = render 'layouts/shared/flashes'
     .container.my-5
       = yield
     = javascript_include_tag 'application'
