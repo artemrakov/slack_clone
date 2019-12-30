@@ -33,4 +33,10 @@ module ApplicationHelper
   def message_for_notification(notification)
     ::NotificationHelper.message(notification)
   end
+
+  def onboarding_step_icon(step_completed)
+    color = step_completed ? 'text-success' : 'text-muted'
+    content_tag :i, nil, class: ["fas", "fa-check", color], style: 'margin-right: 5px'
+  end
 end
+

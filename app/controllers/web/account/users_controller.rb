@@ -7,9 +7,9 @@ class Web::Account::UsersController < Web::Account::ApplicationController
     @user = current_user
 
     if @user.update(user_params)
-      redirect_to edit_account_users_path
+      redirect_to edit_account_users_path, notice: "User is updated"
     else
-      redirect_to edit_account_users_path
+      redirect_to edit_account_users_path, alert: "Something went wrong"
     end
   end
 
